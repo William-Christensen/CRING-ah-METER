@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRINGE-ah-METER</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background: #f0f0f0;
+        }
+        h1 {
+            color: #333;
+        }
+        input[type="file"] {
+            margin: 20px 0;
+        }
+        #score {
+            font-size: 48px;
+            margin: 20px;
+        }
+        #emoji {
+            font-size: 64px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Cringe Meter 1-10</h1>
+    <input type="file" id="videoUpload" accept="video/*"><br>
+    <button onclick="calculateCringe()">Check Cringe!</button>
+
+    <div id="result">
+        <div id="score"></div>
+        <div id="emoji"></div>
+    </div>
+
+    <script>
+        function calculateCringe() {
+            const videoInput = document.getElementById('videoUpload');
+            const scoreDiv = document.getElementById('score');
+            const emojiDiv = document.getElementById('emoji');
+
+            if (!videoInput.files || videoInput.files.length === 0) {
+                alert("Please upload a video first!");
+                return;
+            }
+
+            // Generate a random score between 1 and 10
+            const score = Math.floor(Math.random() * 10) + 1;
+
+            // Decide emoji based on score
+            let emoji = '';
+            if (score <= 3) emoji = '😎';        // Low cringe
+            else if (score <= 6) emoji = '😬';   // Medium cringe
+            else emoji = '🤯';                    // High cringe
+
+            // Display results
+            scoreDiv.textContent = `Cringe Score: ${score}/10`;
+            emojiDiv.textContent = emoji;
+        }
+    </script>
+
+</body>
+</html>
